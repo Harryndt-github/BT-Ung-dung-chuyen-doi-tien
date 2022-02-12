@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Chuyển đổi tiền tệ</title>
+    </head>
+    <body>
+        <label>Nhập số tiền:</label>
+        <input type="text" id="txtSoTien">
+        <label> From Currency</label>
+        <select id="cboCurrency" onchange="convert()">
+            <option value="USD">USD</option>
+            <option value="VND">VND</option>
+        </select>
+        <label> To Currency</label>
+        <select id="cboCurrency2" onchange="convert()">
+            <option value="USD">USD</option>
+            <option value="VND">VND</option>
+        </select>
+        <button onclick="convert()">Convert</button>
+        <h1 style="color: red" id="result"></h1>
+        
+    </body>
+</html>
+<script>
+    function convert() {
+        let input = +document.getElementById("txtSoTien").value;
+        let currency = document.getElementById("cboCurrency").value;
+        let to_currency = document.getElementById("cboCurrency").value == "USD" ? "VND" : "USD";
+        let result;
+        let don_vi;
+        if (currency == "USD") {
+            result = input * 23000;
+            don_vi = "VND";
+        } else {
+            result = input / 23000;
+            don_vi = "USD";
+        }
+        document.getElementById("result").innerHTML = `${input} ${currency} = ${result.toFixed(2)} ${don_vi}`;
+    }
+    
+</script>
